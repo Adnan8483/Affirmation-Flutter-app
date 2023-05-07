@@ -6,18 +6,21 @@ var myRootNode = Root.fromJson(map);
 class AffirmationList {
   int? id;
   String? affirmation;
+  int? is_like;
 
-  AffirmationList({this.id, this.affirmation});
+  AffirmationList({this.id, this.affirmation, this.is_like});
 
   AffirmationList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     affirmation = json['affirmation'];
+    is_like = json['is_like'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
     data['affirmation'] = affirmation;
+    data['is_like'] = is_like;
     return data;
   }
 }

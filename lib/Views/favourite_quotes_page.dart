@@ -24,13 +24,25 @@ class _FavouritePageState extends State<FavouritePage> {
     final favouriteItemProvider = Provider.of<FavouriteItemProvider>(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+        title: Text(
+          'Bookmark',
+          style: TextStyle(color: Colors.black),
+        ),
+        automaticallyImplyLeading: true,
+      ),
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                tileMode: TileMode.mirror,
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: [Colors.red, Colors.white])),
+          image: DecorationImage(
+            image: AssetImage('assets/images/background_img/bg_img_2.jpeg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: FutureBuilder<List<AffirmationList>>(
           future: controller.getFavouriteAffirmation(),
           builder: (context, snapshot) {
@@ -152,9 +164,17 @@ class _FavouritePageState extends State<FavouritePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Container(
+                                child: Image.asset(
+                                  "assets/images/warning_logo.png",
+                                  height: 130,
+                                  width: 130,
+                                ),
+                              ),
                               Text(
-                                "No Favourites Quotes Find!",
+                                "You haven't added any affirmations to your favorites yet. Browse through our collection and find some that inspire you.",
                                 style: TextStyle(fontSize: 20),
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
@@ -164,98 +184,6 @@ class _FavouritePageState extends State<FavouritePage> {
             }
           },
         ),
-
-        // Future<List<Map<String, dynamic>>>(
-        //   future: controller.getFavouriteAffirmation(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return Stack(
-        //         children: [
-        //           Center(
-        //             child: Column(
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //                 children: [
-        //                   CircularProgressIndicator(
-        //                     color: Colors.black,
-        //                   ),
-        //                   SizedBox(
-        //                     height: 16,
-        //                   ),
-        //                 ]),
-        //           ),
-        //         ],
-        //       );
-        //     } else if (snapshot.hasError) {
-        //       return Center(
-        //         child: Column(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: [
-        //             Text(
-        //               'Please check your internet connection!',
-        //               style: TextStyle(fontSize: 18),
-        //             ),
-        //           ],
-        //         ),
-        //       );
-        //     } else {
-        //       final homeInfo = snapshot.data!;
-        //       final affirmationList = homeInfo.affirmationList ?? [];
-        //       return Stack(
-        //         children: [
-        //           favouriteItemProvider.selected.length > 0
-        //               ? ListView.builder(
-        //                   scrollDirection: Axis.vertical,
-        //                   itemCount: favouriteItemProvider.selected.length,
-        //                   itemBuilder: (context, index) {
-        //                     final affirmation =
-        //                         affirmationList[index]?.affirmation ?? '';
-        //                     final fav_aff_id = affirmationList[index]?.id ?? 0;
-        //                     return ListTile(
-        //                       onTap: () => Navigator.push(
-        //                           context,
-        //                           MaterialPageRoute(
-        //                               builder: (context) => HomePage())),
-        //                       title: Text(
-        //                         affirmation,
-        //                         // textAlign: TextAlign.center,
-        //                         style: TextStyle(fontSize: 20),
-        //                       ),
-        //                       trailing: Consumer<FavouriteItemProvider>(
-        //                         builder: (context, favouriteProvider, _) =>
-        //                             IconButton(
-        //                           iconSize: 30.0,
-        //                           icon: Icon(favouriteProvider.selected
-        //                                   .contains(fav_aff_id)
-        //                               ? Icons.favorite_sharp
-        //                               : Icons.favorite_border),
-        //                           onPressed: () {
-        //                             if (favouriteProvider.selected
-        //                                 .contains(fav_aff_id)) {
-        //                               favouriteProvider.removeItems(fav_aff_id);
-        //                             }
-        //                             print(favouriteProvider.selected);
-        //                           },
-        //                         ),
-        //                       ),
-        //                     );
-        //                   },
-        //                 )
-        //               : Center(
-        //                   child: Column(
-        //                     mainAxisAlignment: MainAxisAlignment.center,
-        //                     children: [
-        //                       Text(
-        //                         "No Favourites Quotes Find!",
-        //                         style: TextStyle(fontSize: 20),
-        //                       ),
-        //                     ],
-        //                   ),
-        //                 )
-        //         ],
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }

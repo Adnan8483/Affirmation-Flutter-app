@@ -1,108 +1,100 @@
 {
   "affirmation_List": [
     {
-      "id": 1,
-      "affirmation": "I am capable of achieving my goals and dreams."
+      "affirmation": "I am worthy of love and respect.",
+      "category": "self-love"
     },
     {
-      "id": 2,
-      "affirmation": "I trust myself to make the right decisions."
+      "affirmation": "I am capable of achieving anything I set my mind to.",
+      "category": "positive-thinking"
     },
     {
-      "id": 3,
-      "affirmation": "I am worthy of love and respect."
+      "affirmation": "I choose to let go of negative thoughts and focus on the positive.",
+      "category": "positive-thinking"
     },
     {
-      "id": 4,
-      "affirmation": "I am grateful for all the abundance in my life."
+      "affirmation": "I trust my intuition and make wise decisions.",
+      "category": "self-care"
     },
     {
-      "id": 5,
-      "affirmation": "I am confident in my abilities."
+      "affirmation": "I am grateful for all the good things in my life.",
+      "category": "gratitude"
     },
     {
-      "id": 6,
-      "affirmation": "I trust the universe to guide me on my path."
+      "affirmation": "I am surrounded by positive, supportive people who believe in me.",
+      "category": "positive-thinking"
     },
     {
-      "id": 7,
-      "affirmation": "I am open to receiving all the good that life has to offer."
+      "affirmation": "I am worthy of success and abundance.",
+      "category": "positive-thinking"
     },
     {
-      "id": 8,
-      "affirmation": "I am deserving of happiness and joy."
+      "affirmation": "I choose to focus on my strengths and use them to achieve my goals.",
+      "category": "self-care"
     },
     {
-      "id": 9,
-      "affirmation": "I am strong and capable of overcoming any obstacle."
+      "affirmation": "I forgive myself and others for past mistakes and move forward with love and compassion.",
+      "category": "self-love"
     },
     {
-      "id": 10,
-      "affirmation": "I am surrounded by positive energy and love."
+      "affirmation": "I am constantly growing and learning.",
+      "category": "positive-thinking"
     },
     {
-      "id": 11,
-      "affirmation": "I am grateful for my health and well-being."
+      "affirmation": "I am capable of handling any challenge that comes my way.",
+      "category": "positive-thinking"
     },
     {
-      "id": 12,
-      "affirmation": "I am worthy of success and abundance."
+      "affirmation": "I am proud of myself and my accomplishments.",
+      "category": "self-love"
     },
     {
-      "id": 13,
-      "affirmation": "I am confident in my ability to create the life I desire."
+      "affirmation": "I am confident in my abilities and talents.",
+      "category": "positive-thinking"
     },
     {
-      "id":  4,
-      "affirmation": "I trust that everything is happening for my highest good."
+      "affirmation": "I am grateful for my body and all that it does for me.",
+      "category": "self-care"
     },
     {
-      "id":  5,
-      "affirmation": "I am loved and supported by the universe."
+      "affirmation": "I am surrounded by love and positive energy.",
+      "category": "positive-thinking"
     },
     {
-      "id": 16,
-      "affirmation": "I am grateful for all the blessings in my life."
+      "affirmation": "I am deserving of happiness and joy.",
+      "category": "positive-thinking"
     },
     {
-      "id": 17,
-      "affirmation": "I am worthy of love, happiness, and success."
+      "affirmation": "I am capable of making positive changes in my life.",
+      "category": "positive-thinking"
     },
     {
-      "id": 18,
-      "affirmation": "I am capable of achieving anything I set my mind to."
+      "affirmation": "I am surrounded by abundance and prosperity.",
+      "category": "positive-thinking"
     },
     {
-      "id":  9,
-      "affirmation": "I trust that everything will work out for my highest good."
+      "affirmation": "I trust the journey of my life.",
+      "category": "positive-thinking"
     },
     {
-      "id": 20,
-      "affirmation": "I am surrounded by abundance and prosperity."
+      "affirmation": "I am grateful for the challenges in my life, as they help me grow and become stronger.",
+      "category": "gratitude"
     },
     {
-      "id": 21,
-      "affirmation": "I am grateful for all the opportunities in my life."
+      "affirmation": "I am deserving of love and affection.",
+      "category": "self-love"
     },
     {
-      "id": 22,
-      "affirmation": "I am confident in my ability to handle any situation that arises."
+      "affirmation": "I choose to let go of anger and resentment, and replace it with love and understanding.",
+      "category": "positive-thinking"
     },
     {
-      "id": 23,
-      "affirmation": "I trust that the universe is conspiring in my favor."
+      "affirmation": "I am capable of achieving balance in all areas of my life.",
+      "category": "self-care"
     },
     {
-      "id": 24,
-      "affirmation": "I am deserving of love, respect, and admiration."
-    },
-    {
-      "id": 25,
-      "affirmation": "I am strong, powerful, and confident."
-    },
-    {
-      "id": 26,
-      "affirmation": "I am grateful for all the love in my life."
+      "affirmation": "I am surrounded by abundance and prosperity.",
+      "category": "positive-thinking"
     }
   ]
 }

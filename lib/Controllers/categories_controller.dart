@@ -1,16 +1,14 @@
 import 'package:get/state_manager.dart';
+import 'package:my_learn_app/Models/home_info.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:my_learn_app/Models/categories_info.dart';
 
 class CategoriesController {
-  List<String> category_title = [
-    "Self-love and acceptance",
-    "Confidence and self-esteem",
-    "Health and well-being",
-    "Success and abundance",
-    "Gratitude affirmations",
-    "Relationship",
-    "Spiritual",
-    "Creativity and inspiration",
-    "Forgiveness and letting go",
-    "overcoming challenges"
+  List<Category> category_title = [
+    Category(title: "Random", value: "random"),
+    Category(title: "Self Love", value: "self-love"),
+    Category(title: "Positive Thinking", value: "positive-thinking"),
+    Category(title: "Self Care", value: "self-care"),
+    Category(title: "Gratitude", value: "gratitude"),
   ];
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_learn_app/Providers/favourite_provider.dart';
 import 'package:my_learn_app/Views/onboarding_page.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.lobsterTextTheme(
+            Theme.of(context).textTheme,
+          ),
         ),
         home: OnboardingPage(),
       ),

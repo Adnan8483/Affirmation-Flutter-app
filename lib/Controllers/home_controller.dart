@@ -8,6 +8,7 @@ import 'package:my_learn_app/Views/catagories_page.dart';
 import 'package:my_learn_app/Views/premium_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite/sqflite.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
   var client = http.Client();
@@ -30,6 +31,7 @@ class HomeController extends GetxController {
           CREATE TABLE Affirmation_table (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             affirmation TEXT,
+            category TEXT,
             is_like INTEGER NOT NULL DEFAULT 0
           )
         ''');
@@ -39,11 +41,9 @@ class HomeController extends GetxController {
 
   //Method to get data from api and set in sql db.
   Future<HomeInfo> readJsonApi(String api) async {
-    bool isDatabaseCreated = await databaseExists('affiramtionAppDatabase.db');
-    if (isDatabaseCreated) {
-      print('Database already exists!');
-    } else {
-      print('Database does not exist yet.');
+    //Initialize db if its not initialize so it does not show db error.
+    if (_database == null) {
+      await initDatabase();
     }
 
     var url = Uri.parse(api);
@@ -52,23 +52,26 @@ class HomeController extends GetxController {
       final Map<String, dynamic> dataMap = jsonDecode(response.body);
       final homeInfo = HomeInfo.fromJson(dataMap);
 
-      List<String> affirmationsArr = [];
+      List<Map<String, String>> affirmationsArr = [];
       for (var affirmation in dataMap['affirmation_List']) {
-        affirmationsArr.add(affirmation['affirmation']);
+        Map<String, String> affirmationObject = {
+          'affirmation': affirmation['affirmation'],
+          'category': affirmation['category']
+        };
+
+        affirmationsArr.add(affirmationObject);
+        // print(affirmationsArr[0]['category']);
       }
 
       // Insert data into database
       for (int i = 0; i < affirmationsArr.length; i++) {
-        await _database
-            ?.insert('Affirmation_table', {'affirmation': affirmationsArr[i]});
+        await _database?.insert('Affirmation_table', {
+          'affirmation': affirmationsArr[i]['affirmation'],
+          'category': affirmationsArr[i]['category']
+        });
       }
 
-      // List<AffirmationList> affirmationData = await getAllAffirmations();
-      // print('%%% getAllAffirmations From SQL :- $affirmationData');
-
-      // print("%%%% this is affirmations:- $dataMap");
       return homeInfo;
-      // print("### this is jsonDecode DATA:- $dataMap");
     } else {
       return HomeInfo.fromJson({"error": "oops something went wrong!"});
     }
@@ -81,7 +84,6 @@ class HomeController extends GetxController {
     }
     final List<Map<String, dynamic>> results = await _database!
         .query('Affirmation_table', where: 'is_like = ?', whereArgs: [1]);
-    print("##@@Get Favourite aff INSIDE data:-$results");
     return results.map((map) => AffirmationList.fromJson(map)).toList();
   }
 
@@ -92,7 +94,6 @@ class HomeController extends GetxController {
     }
     final List<Map<String, dynamic>> results =
         await _database!.query('Affirmation_table');
-    // print("##@@Get all function INSIDE data:-$results");
     return results.map((map) => AffirmationList.fromJson(map)).toList();
   }
 
@@ -114,13 +115,18 @@ class HomeController extends GetxController {
     callback();
   }
 
-  goToCatagory(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CatagoriesPage()));
-  }
-
   goToPremium(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => PremiumPage()));
+  }
+
+  Future<void> saveSelectedCategories(List<String> selectedCategories) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('selected_categories', selectedCategories);
+  }
+
+  Future<List<String>> loadSelectedCategories() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList('selected_categories') ?? [];
   }
 }

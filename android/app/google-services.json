@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888933715916",
+    "project_id": "affirmation-app-33385",
+    "storage_bucket": "affirmation-app-33385.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888933715916:android:c276119829284ef55f1769",
+        "android_client_info": {
+          "package_name": "com.example.my_learn_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888933715916-icjmq6cvk86mfjt6a9vnjj9ngoflu5om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIPWvtjufApycqbNbXhSgZnTI44Qsskcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888933715916-icjmq6cvk86mfjt6a9vnjj9ngoflu5om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

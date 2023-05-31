@@ -21,8 +21,6 @@ class _FavouritePageState extends State<FavouritePage> {
 
   @override
   Widget build(BuildContext context) {
-    final favouriteItemProvider = Provider.of<FavouriteItemProvider>(context);
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,

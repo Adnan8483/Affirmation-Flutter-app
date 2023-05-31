@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -46,35 +47,55 @@ class HomeController extends GetxController {
       await initDatabase();
     }
 
-    var url = Uri.parse(api);
-    var response = await client.get(url);
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> dataMap = jsonDecode(response.body);
-      final homeInfo = HomeInfo.fromJson(dataMap);
+    try {
+      var url = Uri.parse(api);
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> dataMap = jsonDecode(response.body);
+        final homeInfo = HomeInfo.fromJson(dataMap);
 
-      List<Map<String, String>> affirmationsArr = [];
-      for (var affirmation in dataMap['affirmation_List']) {
-        Map<String, String> affirmationObject = {
-          'affirmation': affirmation['affirmation'],
-          'category': affirmation['category']
-        };
+        List<Map<String, String>> affirmationsArr = [];
+        for (var affirmation in dataMap['affirmation_List']) {
+          Map<String, String> affirmationObject = {
+            'affirmation': affirmation['affirmation'],
+            'category': affirmation['category']
+          };
 
-        affirmationsArr.add(affirmationObject);
-        // print(affirmationsArr[0]['category']);
+          affirmationsArr.add(affirmationObject);
+          // print(affirmationsArr[0]['category']);
+        }
+
+        // Insert data into database
+        for (int i = 0; i < affirmationsArr.length; i++) {
+          await _database?.insert('Affirmation_table', {
+            'affirmation': affirmationsArr[i]['affirmation'],
+            'category': affirmationsArr[i]['category']
+          });
+        }
+
+        return homeInfo;
+      } else {
+        return HomeInfo.fromJson({"error": "oops something went wrong!"});
+      }
+    } on SocketException catch (e) {
+      if (e.osError?.errorCode == -7) {
+        // Failed host lookup, indicating potential internet connection issue
+        print('!!!Failed host lookup: ${e.osError?.errorCode}');
+        print('@@@Please check your internet connection.');
+        // Display a message to the user indicating the internet connection issue
+      } else {
+        // Other SocketException occurred, handle it accordingly
+        print('###SocketException occurred: $e');
       }
 
-      // Insert data into database
-      for (int i = 0; i < affirmationsArr.length; i++) {
-        await _database?.insert('Affirmation_table', {
-          'affirmation': affirmationsArr[i]['affirmation'],
-          'category': affirmationsArr[i]['category']
-        });
-      }
-
-      return homeInfo;
-    } else {
-      return HomeInfo.fromJson({"error": "oops something went wrong!"});
+      throw Exception("*** No internet connection");
+    } catch (e) {
+      // Other exception occurred, handle it accordingly
+      print('Exception occurred: $e');
     }
+
+    // Default return statement if no other return statement is reached
+    return HomeInfo();
   }
 
   //Method to get favourite affirmation from db.

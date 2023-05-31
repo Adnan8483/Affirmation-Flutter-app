@@ -25,9 +25,9 @@ class _CatagoriesPageState extends State<CatagoriesPage> {
     homeController.loadSelectedCategories().then((categories) {
       setState(() {
         _selectedCategories = categories;
-        print("categories in CatPage :- $categories");
+        print(_selectedCategories.isEmpty);
 
-        if (!_selectedCategories.contains('random')) {
+        if (_selectedCategories.isEmpty) {
           _selectedCategories.add('random');
           _isFirstRun = false;
         }

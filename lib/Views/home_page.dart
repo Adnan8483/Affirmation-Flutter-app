@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:my_learn_app/Controllers/home_controller.dart';
 import 'package:my_learn_app/Controllers/onboarding_controller.dart';
@@ -8,6 +9,7 @@ import 'package:my_learn_app/Models/home_info.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_learn_app/Providers/favourite_provider.dart';
 import 'package:my_learn_app/Views/catagories_page.dart';
+import 'package:my_learn_app/Services/local_notification.dart';
 import 'package:share/share.dart';
 import 'package:provider/provider.dart';
 import 'favourite_quotes_page.dart';
@@ -28,19 +30,32 @@ class _HomePageState extends State<HomePage> {
   List<int> selectedQuote = [];
   List<AffirmationList> affirmationList = [];
   List<String> _selectedCategories = ['random'];
-  bool _isFirstRun = true;
+
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
     super.initState();
+    notificationServices.initializeNotifications(
+        onNotificationTap: handleNotificationTap);
     controller.readJsonApi("https://deveffocess.github.io/sample.json");
     loadAffirmations();
     controller.loadSelectedCategories().then((categories) {
       setState(() {
         _selectedCategories = categories;
-        print("categories in Home :- $categories");
       });
     });
+  }
+
+//For getting notification payload value.
+  void handleNotificationTap(String? payload) {
+    if (payload != null) {
+      int affirmationId = int.parse(payload);
+      if (affirmationId != null) {
+        print(
+            '### IN HOME ### Notification tapped for affirmation ID: $affirmationId');
+      }
+    }
   }
 
   void loadAffirmations() async {
@@ -79,7 +94,9 @@ class _HomePageState extends State<HomePage> {
           child: FutureBuilder<List<AffirmationList>>(
             future: controller.getAllAffirmations(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
+              // print("%Snapshot :-${snapshot.data}");
+              if (snapshot.connectionState == ConnectionState.waiting ||
+                  snapshot.data!.isEmpty) {
                 return Stack(
                   children: [
                     Center(
@@ -116,7 +133,6 @@ class _HomePageState extends State<HomePage> {
                       _selectedCategories.contains('random')) {
                     return true; // no categories selected, show all affirmations
                   } else {
-                    // print("### Selected CAT $_selectedCategories");
                     return _selectedCategories.contains(affirmation.category ??
                         ''); // show affirmations for selected categories
                   }
@@ -261,64 +277,66 @@ class _HomePageState extends State<HomePage> {
       iconTheme: IconThemeData(color: Colors.black),
       elevation: 0,
       actions: [
-        GestureDetector(
-          onTap: () {
-            controller.goToPremium(context);
-          },
-          child: Container(
-            child: Center(
-              child: Container(
-                height: 30,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                        'assets/images/background_img/bg_img_1_crop.jpeg'),
-                  ),
-                ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(50)),
-                  child: Shimmer(
-                    duration: const Duration(seconds: 4),
-                    interval: const Duration(seconds: 1),
-                    color: Colors.white,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Icon(
-                            color: Colors.white,
-                            FontAwesomeIcons.crown,
-                            size: 16,
-                          ),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text(
-                            'Premium',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
+        //** Hide Premium button for this version. */
+
+        // GestureDetector(
+        //   onTap: () {
+        //     controller.goToPremium(context);
+        //   },
+        //   child: Container(
+        //     child: Center(
+        //       child: Container(
+        //         height: 30,
+        //         decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(15),
+        //           image: const DecorationImage(
+        //             fit: BoxFit.cover,
+        //             image: AssetImage(
+        //                 'assets/images/background_img/bg_img_1_crop.jpeg'),
+        //           ),
+        //         ),
+        //         child: ClipRRect(
+        //           borderRadius: const BorderRadius.all(Radius.circular(50)),
+        //           child: Shimmer(
+        //             duration: const Duration(seconds: 4),
+        //             interval: const Duration(seconds: 1),
+        //             color: Colors.white,
+        //             child: Align(
+        //               alignment: Alignment.center,
+        //               child: Row(
+        //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //                 crossAxisAlignment: CrossAxisAlignment.center,
+        //                 children: const [
+        //                   SizedBox(
+        //                     width: 8,
+        //                   ),
+        //                   Icon(
+        //                     color: Colors.white,
+        //                     FontAwesomeIcons.crown,
+        //                     size: 16,
+        //                   ),
+        //                   SizedBox(
+        //                     width: 6,
+        //                   ),
+        //                   Text(
+        //                     'Premium',
+        //                     style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontWeight: FontWeight.bold,
+        //                     ),
+        //                   ),
+        //                   SizedBox(
+        //                     width: 8,
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

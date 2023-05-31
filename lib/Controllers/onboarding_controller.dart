@@ -22,10 +22,19 @@ class OnboardingController extends GetxController {
 
   List<OnboardingInfo> onboardingPages = [
     OnboardingInfo(
-        'assets/images/logo.jpg', '1st page', '1st Description of this page'),
+        'assets/images/logo.jpg',
+        'assets/images/onBoarding_BgImg/onBoarding_bg_1.jpg',
+        'Hey! \nWelcome to the \nInspira',
+        'Let our curated collection of powerful quotes inspire and uplift you on your journey to greatness.'),
     OnboardingInfo(
-        'assets/images/logo.jpg', '2nd page', '2nd Description of this page'),
+        'assets/images/logo.jpg',
+        'assets/images/onBoarding_BgImg/onBoarding_bg_4_resize.jpg',
+        'Embrace the Power of \nAffirmations',
+        'Harness the power of affirmations to create positive change in your life. Choose from a wide range of categories and personalize your experience.'),
     OnboardingInfo(
-        'assets/images/logo.jpg', '3rd page', '3rd Description of this page')
+        'assets/images/logo.jpg',
+        'assets/images/onBoarding_BgImg/onBoarding_bg_7_resize.jpg',
+        'Daily Challenges for \nGrowing',
+        'Challenge yourself to step out of your comfort zone and unlock your hidden potential.')
   ];
 }

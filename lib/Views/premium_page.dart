@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:my_learn_app/Controllers/premium_controller.dart';
 import 'package:my_learn_app/Views/help_faq.dart';
 import 'package:my_learn_app/Constants/string_constant.dart';

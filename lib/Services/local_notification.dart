@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -63,8 +61,8 @@ class NotificationServices {
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
       const NotificationDetails notificationDetails = NotificationDetails(
         android: AndroidNotificationDetails(
-          "com.affirmation.app.notification_channel",
-          "Affirmation App Channel",
+          "com.effocess.inspira.notification_channel",
+          "Inspira App Channel",
           importance: Importance.max,
           priority: Priority.high,
         ),
@@ -87,8 +85,8 @@ class NotificationServices {
       int affirmationId, String affirmationText) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      "com.affirmation.app.notification_channel",
-      "Affirmation App Channel",
+      "com.effocess.inspira.notification_channel",
+      "Inspira App Channel",
       importance: Importance.max,
       priority: Priority.high,
     );

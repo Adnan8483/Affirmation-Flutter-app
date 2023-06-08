@@ -1,6 +1,3 @@
-import 'package:get/state_manager.dart';
-import 'package:my_learn_app/Models/home_info.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:my_learn_app/Models/categories_info.dart';
 
 class CategoriesController {

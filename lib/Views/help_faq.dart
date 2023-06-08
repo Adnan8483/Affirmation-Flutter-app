@@ -6,8 +6,6 @@ import 'package:my_learn_app/Constants/string_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HelpFAQScreen extends StatelessWidget {
-  final _controller = PremiumController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

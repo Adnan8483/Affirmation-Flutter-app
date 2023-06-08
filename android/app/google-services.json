@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:888933715916:android:c276119829284ef55f1769",
+        "mobilesdk_app_id": "1:888933715916:android:9623c0c17bdb3b1a5f1769",
         "android_client_info": {
-          "package_name": "com.example.my_learn_app"
+          "package_name": "com.effocess.inspira"
         }
       },
       "oauth_client": [

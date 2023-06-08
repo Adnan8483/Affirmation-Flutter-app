@@ -4,6 +4,7 @@ import 'package:my_learn_app/Models/onboarding_info.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:my_learn_app/Views/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingController extends GetxController {
   var selectedPageIndex = 0.obs;
@@ -18,6 +19,17 @@ class OnboardingController extends GetxController {
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
     }
+  }
+
+  Future<void> setOnboardingStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboardingShown', false);
+  }
+
+  Future<bool> checkOnboardingStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTimeUser = prefs.getBool('onboardingShown') ?? true;
+    return isFirstTimeUser;
   }
 
   List<OnboardingInfo> onboardingPages = [

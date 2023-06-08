@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_learn_app/Controllers/onboarding_controller.dart';
 import 'package:my_learn_app/Providers/favourite_provider.dart';
 import 'package:my_learn_app/Views/onboarding_page.dart';
+import 'package:my_learn_app/Views/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,8 +20,29 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _controller = OnboardingController();
+
+  bool _showOnboardingScreen = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller.checkOnboardingStatus().then((value) {
+      setState(() {
+        _showOnboardingScreen = value;
+      });
+      print('#### Check isFirstUser: $_showOnboardingScreen');
+    });
+  }
 
   // This widget is the root of your application.
   @override
@@ -37,7 +60,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: OnboardingPage(),
+        home: !_showOnboardingScreen ? HomePage() : OnboardingPage(),
       ),
     );
   }

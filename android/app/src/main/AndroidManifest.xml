@@ -22,7 +22,7 @@
               />
                <meta-data
         android:name="com.google.firebase.messaging.default_notification_channel_id"
-        android:value="com.affirmation.app.notification_channel"/>
+        android:value="com.effocess.inspira.notification_channel"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

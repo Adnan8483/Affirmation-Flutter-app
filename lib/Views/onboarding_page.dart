@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_learn_app/Controllers/home_controller.dart';
 import 'package:my_learn_app/Controllers/onboarding_controller.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_learn_app/Services/local_notification.dart';
 import 'package:google_fonts/google_fonts.dart';

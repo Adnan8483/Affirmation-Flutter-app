@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:my_learn_app/Controllers/home_controller.dart';
 import 'package:my_learn_app/Models/home_info.dart';
-import 'package:my_learn_app/Providers/favourite_provider.dart';
-import 'package:my_learn_app/Views/home_page.dart';
-import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
 class FavouritePage extends StatefulWidget {
@@ -97,10 +93,13 @@ class _FavouritePageState extends State<FavouritePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          affirmation,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 24),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            affirmation,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 24),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 16,

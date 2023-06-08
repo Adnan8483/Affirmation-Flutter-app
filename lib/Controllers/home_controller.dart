@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_learn_app/Models/home_info.dart';
-import 'package:flutter/services.dart' as rootBundle;
-import 'package:my_learn_app/Views/catagories_page.dart';
 import 'package:my_learn_app/Views/premium_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite/sqflite.dart';

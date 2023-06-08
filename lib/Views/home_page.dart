@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:my_learn_app/Controllers/home_controller.dart';
 import 'package:my_learn_app/Controllers/onboarding_controller.dart';
 import 'package:my_learn_app/Models/home_info.dart';
 import 'package:get/state_manager.dart';
-import 'package:my_learn_app/Providers/favourite_provider.dart';
 import 'package:my_learn_app/Views/catagories_page.dart';
 import 'package:my_learn_app/Services/local_notification.dart';
 import 'package:share/share.dart';
-import 'package:provider/provider.dart';
-import 'favourite_quotes_page.dart';
-import 'premium_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'favourite_quotes_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeController controller = Get.put(HomeController());
-  final _controller = OnboardingController();
+  final onBoardingController = OnboardingController();
 
   List<int> selectedQuote = [];
   List<AffirmationList> affirmationList = [];
@@ -45,6 +38,8 @@ class _HomePageState extends State<HomePage> {
         _selectedCategories = categories;
       });
     });
+
+    onBoardingController.setOnboardingStatus();
   }
 
 //For getting notification payload value.

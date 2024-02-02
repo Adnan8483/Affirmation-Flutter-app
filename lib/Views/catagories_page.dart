@@ -16,7 +16,6 @@ class _CatagoriesPageState extends State<CatagoriesPage> {
   final HomeController homeController = Get.put(HomeController());
 
   List<String> _selectedCategories = ["random"];
-  bool _isFirstRun = true;
 
   @override
   void initState() {
@@ -28,7 +27,6 @@ class _CatagoriesPageState extends State<CatagoriesPage> {
 
         if (_selectedCategories.isEmpty) {
           _selectedCategories.add('random');
-          _isFirstRun = false;
         }
       });
     });

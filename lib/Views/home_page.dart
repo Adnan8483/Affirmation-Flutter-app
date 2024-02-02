@@ -8,7 +8,6 @@ import 'package:get/state_manager.dart';
 import 'package:my_learn_app/Views/catagories_page.dart';
 import 'package:my_learn_app/Services/local_notification.dart';
 import 'package:share/share.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'favourite_quotes_page.dart';
 
 class HomePage extends StatefulWidget {

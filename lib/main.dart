@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Inspira App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           textTheme: GoogleFonts.lobsterTextTheme(
